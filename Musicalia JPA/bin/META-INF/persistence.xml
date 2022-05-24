@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+    <persistence-unit name="ProyectoIndividual" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>Negocio.Departamentos.ONDepartamento</class>
+        <class>Negocio.Empleados.ONEmpleado</class>
+        <class>Negocio.Empleados.ONEmpleadoTiempoParcial</class>
+        <class>Negocio.Empleados.ONEmpleadoTiempoCompleto</class>
+
+        <properties>
+            <!-- equivalente al shared-cache-mode. Poner uno u otro, no ambos -->
+            <property name="eclipselink.cache.shared.default" value="false"/>
+
+            <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:proyectoIndividual_jpa.db"/>
+
+
+            <!-- enable this property to see SQL and other logging -->
+            <!-- property name="eclipselink.logging.level" value="FINE"/ -->
+
+            <!-- necasario para activar foreign keys -->
+            <property name="eclipselink.session-event-listener" value="Main.SQLiteSessionEventAdapter"/>
+
+            <property name="eclipselink.ddl-generation" value="create-tables"/>
+            <property name="eclipselink.create-ddl-jdbc-file-name" value="createDDL_ddlGeneration.jdbc"/>
+            <property name="eclipselink.drop-ddl-jdbc-file-name" value="dropDDL_ddlGeneration.jdbc"/>
+            <property name="eclipselink.ddl-generation.output-mode" value="both"/>
+        </properties>
+    </persistence-unit>
+</persistence>
